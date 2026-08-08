@@ -1,0 +1,6 @@
+{
+  "name": "Bachelor Food",
+  "description": "Homemade meals delivered fresh daily for modern professionals and bachelors with flexible meal plans, customizable daily menus, 3D interactive meal previews, and instant online ordering.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
