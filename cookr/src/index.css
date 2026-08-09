@@ -1,10 +1,23 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    min-width: 320px;
+    overflow-x: hidden;
+  }
+
   body {
     background-color: #FFF8F3;
     font-family: 'Outfit', sans-serif;
     color: #1b1c1c;
+    min-width: 320px;
+    overflow-x: hidden;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
   }
 }
 

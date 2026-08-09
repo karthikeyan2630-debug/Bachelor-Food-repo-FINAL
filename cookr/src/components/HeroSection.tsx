@@ -62,17 +62,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
 
           {/* ── LEFT: copy ── */}
-          <div className="flex flex-col items-start gap-5">
+          <div className="flex min-w-0 flex-col items-start gap-5">
             <span className="inline-flex items-center gap-1.5 bg-[#ffdbcc] text-[#7a2a00] text-xs font-bold px-4 py-1.5 rounded-full">
               <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] animate-ping inline-block" />
               Now live in 5 South Indian cities
             </span>
 
-            <h1 className="text-4xl sm:text-5xl md:text-[3.5rem] font-extrabold tracking-tight text-[#1b1c1c] leading-[1.1]">
+            <h1 className="text-3xl min-[380px]:text-4xl sm:text-5xl md:text-[3.5rem] font-extrabold tracking-tight text-[#1b1c1c] leading-[1.1] break-words">
               Taste of home,{' '}
-              <span className="relative inline-block">
+              <span className="relative inline text-[#ff6a00]">
                 <span className="text-[#ff6a00]">every morning.</span>
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 240 10" fill="none">
+                <svg className="absolute -bottom-2 left-0 hidden w-full sm:block" viewBox="0 0 240 10" fill="none" aria-hidden="true">
                   <path d="M2 8 C50 2, 100 2, 120 5 S200 9 238 4" stroke="#FF6A00" strokeWidth="2.5" strokeLinecap="round" fill="none" opacity="0.45" />
                 </svg>
               </span>
@@ -119,7 +119,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           </div>
 
           {/* ── RIGHT: photo carousel card ── */}
-          <div className="relative">
+          <div className="relative min-w-0">
             {/* Main big image */}
             <div className="relative h-[380px] sm:h-[460px] md:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/60">
               {HERO_IMAGES.map((img, idx) => (
@@ -206,11 +206,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         </div>
 
         {/* Stats strip */}
-        <div className="mt-14 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-14 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
           {STATS.map((s) => (
             <div
               key={s.label}
-              className="bg-white rounded-2xl px-6 py-5 text-center soft-shadow border border-[#f0eded]"
+              className="bg-white rounded-2xl px-3 py-5 sm:px-6 text-center soft-shadow border border-[#f0eded]"
             >
               <p className="text-2xl font-extrabold text-[#ff6a00]">{s.value}</p>
               <p className="text-xs font-semibold text-[#5a4136] mt-0.5">{s.label}</p>
