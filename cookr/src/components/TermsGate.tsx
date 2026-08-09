@@ -331,11 +331,7 @@ export const TermsGate: React.FC<TermsGateProps> = ({ onAccepted }) => {
                     className="sr-only"
                   />
                   <div
-                    onClick={() => { if (!scrolledToBottom) return; setChecked(p => !p); setDeclined(false); }}
-                    role="checkbox"
-                    aria-checked={checked}
-                    tabIndex={scrolledToBottom ? 0 : -1}
-                    onKeyDown={(e) => { if ((e.key === ' ' || e.key === 'Enter') && scrolledToBottom) { setChecked(p => !p); setDeclined(false); } }}
+                    aria-hidden="true"
                     className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${
                       !scrolledToBottom
                         ? 'bg-[#f0eded] border-[#dcd9d9]'
