@@ -322,7 +322,7 @@ export const ChefsSection: React.FC<ChefsSectionProps> = ({ chefs }) => {
                 <p className="text-[11px] text-[#8e7164] mt-0.5">{selectedChef.city} · on Bachelor Food since {selectedChef.since}</p>
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <div className="flex-1 bg-amber-50 rounded-xl p-3 text-center border border-amber-100">
                   <p className="text-base font-extrabold text-[#1b1c1c]">{selectedChef.rating}★</p>
                   <p className="text-[10px] text-[#8e7164] font-medium">Avg Rating</p>

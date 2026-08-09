@@ -56,7 +56,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   return (
     <header className="relative overflow-hidden pt-8 pb-0 md:pt-14">
       {/* Ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#ff6a00]/6 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(900px,90vw)] h-[min(500px,50vh)] bg-[#ff6a00]/6 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
