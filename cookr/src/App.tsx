@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { TabType } from './types';
 import { MENU_ITEMS, CHEFS } from './data/mockData';
 import { Navbar } from './components/Navbar';
@@ -15,6 +15,12 @@ import { TermsPage } from './components/TermsPage';
 export default function App() {
   const [termsAccepted, setTermsAccepted] = useState<boolean>(() => hasAcceptedCurrentTerms());
   const [activeTab, setActiveTab] = useState<TabType>('home');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsLoading(false), 1650);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const handleNavigate = (tab: TabType) => {
     setActiveTab(tab);
@@ -25,6 +31,10 @@ export default function App() {
     setTermsAccepted(true);
     window.scrollTo({ top: 0 });
   };
+
+  if (isLoading) {
+    return <div className="min-h-screen bg-[#1b1c1c] text-white grid place-items-center overflow-hidden relative"><div className="absolute w-[32rem] h-[32rem] rounded-full bg-[#ff6a00]/20 blur-[120px]" /><div className="relative text-center space-y-6"><div className="relative mx-auto w-24 h-24 grid place-items-center"><div className="loader-ring absolute inset-0 rounded-full border-2 border-white/15 border-t-[#ff6a00]" /><div className="w-15 h-15 rounded-2xl bg-[#ff6a00] grid place-items-center shadow-[0_0_35px_rgba(255,106,0,.55)]"><span className="material-symbols-outlined filled text-3xl">soup_kitchen</span></div></div><div><p className="text-xl font-extrabold tracking-tight">Bachelor Food</p><p className="text-sm text-white/55 mt-1">A better morning is on the table.</p></div><div className="w-44 h-1 rounded-full bg-white/10 overflow-hidden mx-auto"><div className="loader-progress h-full w-full bg-[#ff6a00] rounded-full" /></div></div></div>;
+  }
 
   if (!termsAccepted) {
     return <TermsGate onAccepted={handleTermsAccepted} />;

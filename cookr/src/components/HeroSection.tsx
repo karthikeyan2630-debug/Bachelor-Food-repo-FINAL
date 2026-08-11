@@ -91,14 +91,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate('menu')}
                 className="btn-gradient text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-md flex items-center gap-2 group w-full sm:w-auto justify-center"
               >
-                <span>Browse Menu</span>
+                <span>Download the App</span>
                 <span className="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
               </button>
               <button
                 onClick={() => onNavigate('chefs')}
                 className="bg-white border-2 border-[#ff6a00] text-[#ff6a00] px-8 py-3.5 rounded-full text-sm font-bold hover:bg-[#fff5ee] transition-colors w-full sm:w-auto text-center"
               >
-                Meet Our Chefs
+                Explore Home Chefs
               </button>
             </div>
 
@@ -121,7 +121,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           {/* ── RIGHT: photo carousel card ── */}
           <div className="relative min-w-0">
             {/* Main big image */}
-            <div className="relative h-[380px] sm:h-[460px] md:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/60">
+            <div className="relative h-[380px] sm:h-[460px] md:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/60 float-gentle">
               {HERO_IMAGES.map((img, idx) => (
                 <img
                   key={img.url}

@@ -87,22 +87,23 @@ export const ChefsSection: React.FC<ChefsSectionProps> = ({ chefs }) => {
           <button
             key={chef.id}
             onClick={() => setSelectedChef(chef)}
-            className="bg-white rounded-3xl soft-shadow border border-[#f0eded] overflow-hidden group text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#ff6a00]/40"
+            className="bg-white/70 backdrop-blur-xl rounded-3xl soft-shadow border border-white overflow-hidden group text-left transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-[#ff6a00]/40"
           >
             {/* No photo — gradient header with initial */}
-            <div className="relative h-36 bg-gradient-to-br from-[#ff6a00] to-[#ff8c33] flex items-center justify-center">
-              <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center border-2 border-white/40">
+            <div className="relative h-36 bg-gradient-to-br from-[#ff6a00]/95 to-[#ff8c33] flex items-center justify-center overflow-hidden">
+              <img src={chef.coverImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-35 group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer" />
+              <div className="relative w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center border-2 border-white/40">
                 <span className="text-2xl font-extrabold text-white">
                   {chef.name.charAt(0)}
                 </span>
               </div>
-              <div className="absolute bottom-3 left-3 bg-black/30 backdrop-blur-sm text-[10px] font-bold text-white px-2.5 py-1 rounded-full flex items-center gap-1">
+              <div className="absolute bottom-3 left-3 bg-black/30 backdrop-blur-md border border-white/15 text-[10px] font-bold text-white px-2.5 py-1 rounded-full flex items-center gap-1">
                 <span className="material-symbols-outlined text-xs">location_on</span>
                 {chef.city}
               </div>
             </div>
 
-            <div className="px-5 pt-4 pb-5">
+            <div className="px-5 pt-4 pb-5 bg-white/35 backdrop-blur-md">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-1 bg-amber-50 text-amber-700 px-2.5 py-1 rounded-full text-[11px] font-bold border border-amber-100">
                   <span className="material-symbols-outlined filled text-sm">star</span>

@@ -37,12 +37,19 @@ export const ReviewsSection: React.FC = () => {
         </div>
       </div>
 
+      <div className="relative overflow-hidden rounded-3xl bg-[#fff0e6] border border-[#ffdbcc] p-5 md:p-7">
+        <div className="absolute inset-x-0 top-1/2 border-t-2 border-dashed border-[#ff6a00]/30" />
+        <div className="relative grid grid-cols-3 gap-3 text-center">
+          {[['06:15', 'Chef starts fresh'], ['07:40', 'Packed with care'], ['08:10', 'Morning made easier']].map(([time, label], index) => <div key={time} className="space-y-2"><div className="w-9 h-9 mx-auto rounded-full bg-[#ff6a00] text-white grid place-items-center font-extrabold text-xs ring-4 ring-[#fff0e6]">{index + 1}</div><p className="text-xs font-extrabold text-[#a14000]">{time}</p><p className="text-[10px] text-[#5a4136]">{label}</p></div>)}
+        </div>
+      </div>
+
       {/* Review cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {REVIEWS.map((rev) => (
           <article
             key={rev.id}
-            className="bg-white rounded-3xl p-6 soft-shadow border border-[#f0eded] flex flex-col justify-between space-y-4 hover:-translate-y-1 transition-transform duration-300"
+            className="bg-white rounded-3xl p-6 soft-shadow border border-[#f0eded] flex flex-col justify-between space-y-4 hover:-translate-y-2 hover:shadow-xl transition-all duration-500"
           >
             <div className="space-y-3">
               <div className="flex justify-between items-center">

@@ -53,12 +53,24 @@ export const HowItWorksSection: React.FC<HowItWorksProps> = ({ onNavigate }) => 
           </p>
         </div>
 
+        {/* Animated route: a visual of the app-led journey */}
+        <div className="relative rounded-[2rem] bg-[#1b1c1c] p-6 md:p-10 overflow-hidden">
+          <div className="absolute -right-16 -top-16 w-64 h-64 bg-[#ff6a00]/20 rounded-full blur-3xl" />
+          <div className="relative flex flex-col md:flex-row md:items-center justify-between gap-5 text-white mb-8">
+            <div><p className="text-[#ff8c33] text-xs font-bold uppercase tracking-[.2em] mb-2">Your morning, mapped</p><h3 className="text-2xl font-extrabold">One app. A calmer food routine.</h3></div>
+            <span className="text-sm text-white/60">From your neighbourhood kitchen to your table</span>
+          </div>
+          <svg viewBox="0 0 1000 120" className="relative w-full h-20 md:h-28 overflow-visible" aria-hidden="true"><path d="M20 82 C175 5 300 116 465 55 S720 14 980 70" fill="none" stroke="rgba(255,255,255,.18)" strokeWidth="5" strokeLinecap="round" /><path className="route-line" d="M20 82 C175 5 300 116 465 55 S720 14 980 70" fill="none" stroke="#ff6a00" strokeWidth="3" strokeLinecap="round" /><circle cx="20" cy="82" r="10" fill="#ff6a00" /><circle cx="980" cy="70" r="10" fill="#ff8c33" /></svg>
+          <div className="relative flex justify-between text-[10px] sm:text-xs font-bold uppercase tracking-wider text-white/65"><span>Find</span><span>Choose</span><span>Plan</span><span>Enjoy</span></div>
+        </div>
+
         {/* Steps grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {STEPS.map((step, idx) => (
             <div
               key={step.title}
-              className="bg-white rounded-3xl p-6 soft-shadow border border-[#f0eded] space-y-4 hover:-translate-y-1 transition-transform duration-300"
+              className="bg-white rounded-3xl p-6 soft-shadow border border-[#f0eded] space-y-4 hover:-translate-y-2 hover:shadow-xl transition-all duration-500 reveal-card"
+              style={{ animationDelay: `${idx * 90}ms` }}
             >
               <div className="flex justify-between items-center">
                 <div className="w-12 h-12 rounded-2xl bg-[#fff0e6] text-[#ff6a00] flex items-center justify-center">

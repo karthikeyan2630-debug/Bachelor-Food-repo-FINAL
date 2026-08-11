@@ -84,8 +84,7 @@ export const PlansSection: React.FC = () => {
               Choose Your Meal Plan
             </h2>
             <p className="text-sm text-[#5a4136]">
-              All plans are subscription-based. Cancel, pause, or skip anytime via phone or the Bachelor Food app.
-              No lock-in. Refund terms apply as per our Terms &amp; Conditions.
+              Pick the rhythm that suits your week. One chef-led routine, simple controls in the app, and no long-term lock-in.
             </p>
           </div>
 
@@ -93,7 +92,7 @@ export const PlansSection: React.FC = () => {
             {PLANS.map((plan) => (
               <div
                 key={plan.id}
-                className={`rounded-3xl border-2 p-6 soft-shadow flex flex-col gap-4 relative ${plan.color} ${plan.badge === 'Popular' ? 'ring-2 ring-[#ff6a00]/30' : ''}`}
+                className={`rounded-3xl border-2 p-6 soft-shadow flex flex-col gap-4 relative transition-all duration-500 hover:-translate-y-2 hover:shadow-xl ${plan.color} ${plan.badge === 'Popular' ? 'ring-2 ring-[#ff6a00]/30 scale-[1.02]' : ''}`}
               >
                 {plan.badge && (
                   <span className={`absolute -top-3 left-1/2 -translate-x-1/2 text-[10px] font-extrabold px-3 py-1 rounded-full whitespace-nowrap ${plan.badge === 'Popular' ? 'bg-[#ff6a00] text-white' : 'bg-[#1b1c1c] text-white'}`}>
