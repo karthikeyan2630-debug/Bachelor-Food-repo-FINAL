@@ -36,13 +36,13 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
       {/* Header */}
       <div className="space-y-1">
         <span className="bg-[#ffdbcc] text-[#351000] text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider inline-block">
-          What's Cooking Today
+          Explore the food
         </span>
         <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1b1c1c] tracking-tight mt-2">
-          Browse the Menu
+          Discover What Chefs Make
         </h2>
         <p className="text-base text-[#5a4136]">
-          Every dish is cooked fresh in a verified home kitchen. No ghost kitchens, no central factories.
+          Preview signature dishes from our home chefs. Use the app to discover the chef, story and experience behind each dish.
         </p>
       </div>
 
@@ -145,9 +145,9 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                {/* Price chip */}
-                <div className="absolute top-3 right-3 glass-panel px-3 py-1 rounded-full text-sm font-bold text-[#ff6a00] shadow-sm border border-white/60">
-                  ₹{item.price}
+                {/* Discovery chip */}
+                <div className="absolute top-3 right-3 glass-panel px-3 py-1 rounded-full text-[10px] font-bold text-[#a14000] shadow-sm border border-white/60">
+                  Explore in app
                 </div>
                 {/* Veg indicator */}
                 <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm p-1.5 rounded-full shadow-sm">
@@ -158,7 +158,7 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
                 </div>
                 {item.isBestSeller && (
                   <div className="absolute bottom-3 left-3">
-                    <span className="bg-[#ff6a00] text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm">⭐ Best Seller</span>
+                    <span className="bg-[#ff6a00] text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-sm">Chef favourite</span>
                   </div>
                 )}
               </div>
@@ -185,12 +185,12 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
 
                 <div className="mt-auto pt-3 border-t border-[#f0eded] flex justify-between items-center">
                   <div className="flex items-center gap-1 text-[#5a4136] text-xs font-medium">
-                    <span className="material-symbols-outlined text-base text-[#ff6a00]">local_fire_department</span>
-                    {item.calories} kcal
+                    <span className="material-symbols-outlined text-base text-[#ff6a00]">restaurant</span>
+                    Home-chef speciality
                   </div>
                   <div className="flex items-center gap-1 text-[#5a4136] text-xs font-medium">
-                    <span className="material-symbols-outlined text-base text-[#ff6a00]">schedule</span>
-                    {item.prepTime}
+                    <span className="material-symbols-outlined text-base text-[#ff6a00]">arrow_outward</span>
+                    Discover
                   </div>
                 </div>
 
@@ -215,11 +215,11 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
       {/* Bottom CTA */}
       <div className="bg-gradient-to-r from-[#fff0e6] to-[#ffdbcc]/50 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-4 border border-[#ffdbcc]">
         <div>
-          <h3 className="text-lg font-bold text-[#1b1c1c]">See a dish you love?</h3>
-          <p className="text-sm text-[#5a4136] mt-0.5">Download the Bachelor Food app to subscribe and get it delivered tomorrow morning.</p>
+          <h3 className="text-lg font-bold text-[#1b1c1c]">Found something that feels like home?</h3>
+          <p className="text-sm text-[#5a4136] mt-0.5">Open the Bachelor Food app to discover the chef, explore more dishes and continue your journey.</p>
         </div>
         <a href="#download" className="btn-gradient text-white px-7 py-3 rounded-full font-bold text-sm shadow-md whitespace-nowrap">
-          Get the App
+          Discover in App
         </a>
       </div>
     </section>

@@ -53,7 +53,7 @@ export const TermsGate: React.FC<TermsGateProps> = ({ onAccepted }) => {
 
   return (
     <div className="min-h-screen bg-[#FFF8F3] flex flex-col">
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[min(700px,90vw)] h-[min(400px,45vh)] bg-[#ff6a00]/5 blur-[100px] rounded-full pointer-events-none z-0" />
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#ff6a00]/5 blur-[100px] rounded-full pointer-events-none z-0" />
 
       <div className="flex-1 flex flex-col items-center justify-start py-8 px-4 relative z-10">
         <div className="w-full max-w-2xl space-y-5">
@@ -331,7 +331,11 @@ export const TermsGate: React.FC<TermsGateProps> = ({ onAccepted }) => {
                     className="sr-only"
                   />
                   <div
-                    aria-hidden="true"
+                    onClick={() => { if (!scrolledToBottom) return; setChecked(p => !p); setDeclined(false); }}
+                    role="checkbox"
+                    aria-checked={checked}
+                    tabIndex={scrolledToBottom ? 0 : -1}
+                    onKeyDown={(e) => { if ((e.key === ' ' || e.key === 'Enter') && scrolledToBottom) { setChecked(p => !p); setDeclined(false); } }}
                     className={`w-5 h-5 rounded-md border-2 flex items-center justify-center transition-all duration-200 ${
                       !scrolledToBottom
                         ? 'bg-[#f0eded] border-[#dcd9d9]'

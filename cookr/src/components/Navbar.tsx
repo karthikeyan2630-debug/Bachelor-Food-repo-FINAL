@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { TabType } from '../types';
 
-interface NavbarProps {
-  activeTab: TabType;
-  setActiveTab: (tab: TabType) => void;
-}
+interface NavbarProps { activeTab: TabType; setActiveTab: (tab: TabType) => void; }
 
 export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 16);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 18);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const navItems: { id: TabType; label: string }[] = [
-    { id: 'menu', label: 'Our Menu' },
-    { id: 'plans', label: 'Plans & Pricing' },
+    { id: 'menu', label: 'Explore Food' },
     { id: 'chefs', label: 'Meet Chefs' },
     { id: 'how-it-works', label: 'How It Works' },
     { id: 'reviews', label: 'Reviews' },
+    { id: 'plans', label: 'Plans' },
   ];
 
   const handleNavClick = (tab: TabType) => {
@@ -31,107 +28,40 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab }) => {
   };
 
   return (
-    <nav
-      className={`sticky top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-[0px_4px_20px_rgba(255,106,0,0.08)]'
-          : 'bg-white/70 backdrop-blur-sm'
-      }`}
-    >
-      <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-4 max-w-7xl mx-auto">
-        {/* Logo */}
-        <button
-          onClick={() => handleNavClick('home')}
-          className="flex items-center gap-2 focus:outline-none group"
-        >
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#FF6A00] to-[#FF8C33] flex items-center justify-center shadow-sm">
-            <span className="material-symbols-outlined filled text-white text-lg">soup_kitchen</span>
-          </div>
-          <div className="leading-none">
-            <span className="text-lg font-extrabold tracking-tight text-[#1b1c1c] group-hover:text-[#ff6a00] transition-colors block">
-              Bachelor Food
-            </span>
-            <span className="text-[9px] font-semibold text-[#a14000] tracking-widest uppercase">Home Cooked · Delivered</span>
+    <nav className={`sticky top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'nav-scrolled' : 'nav-top'}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[72px] flex items-center justify-between">
+        <button onClick={() => handleNavClick('home')} className="flex items-center gap-2.5 group">
+          <div className="logo-mark"><span className="material-symbols-outlined filled text-white text-xl">soup_kitchen</span></div>
+          <div className="text-left leading-none">
+            <span className="text-lg font-black tracking-tight text-[#211813] group-hover:text-[#ff6a00] transition-colors block">Bachelor Food</span>
+            <span className="text-[8px] font-bold text-[#a14000] tracking-[0.18em] uppercase">Home food · Real stories</span>
           </div>
         </button>
 
-        {/* Desktop Links */}
-        <div className="hidden md:flex gap-8 items-center">
-          {navItems.map((item) => {
-            const isActive = activeTab === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNavClick(item.id)}
-                className={`text-sm font-semibold transition-colors duration-200 py-1 relative ${
-                  isActive ? 'text-[#ff6a00]' : 'text-[#5d5f5f] hover:text-[#ff6a00]'
-                }`}
-              >
-                {item.label}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ff6a00] rounded-full" />
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-4">
-          <a
-            href="#partner"
-            className="text-sm font-semibold text-[#a14000] hover:text-[#ff6a00] transition-colors"
-          >
-            Become a Chef
-          </a>
-          <button
-            onClick={() => handleNavClick('menu')}
-            className="btn-gradient text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md"
-          >
-            Explore Menu
-          </button>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-[#a14000] focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          <span className="material-symbols-outlined text-2xl">
-            {mobileMenuOpen ? 'close' : 'menu'}
-          </span>
-        </button>
-      </div>
-
-      {/* Mobile Dropdown */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-[#f0eded] bg-white px-6 py-4 shadow-lg space-y-1">
+        <div className="hidden lg:flex items-center gap-7">
           {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`block w-full text-left py-3 text-base font-semibold border-b border-[#f0eded] last:border-0 ${
-                activeTab === item.id ? 'text-[#ff6a00]' : 'text-[#1b1c1c]'
-              }`}
-            >
+            <button key={item.id} onClick={() => handleNavClick(item.id)} className={`nav-link ${activeTab === item.id ? 'nav-link-active' : ''}`}>
               {item.label}
             </button>
           ))}
-          <div className="pt-3 flex flex-col gap-2">
-            <a
-              href="#partner"
-              className="w-full text-center py-2.5 text-sm font-semibold text-[#a14000] border border-[#ff6a00] rounded-full"
-            >
-              Become a Chef
-            </a>
-            <button
-              onClick={() => handleNavClick('menu')}
-              className="w-full text-center py-2.5 text-sm font-semibold btn-gradient text-white rounded-full shadow-sm"
-            >
-              Explore Menu
-            </button>
-          </div>
+        </div>
+
+        <div className="hidden md:flex items-center gap-3">
+          <a href="#download" className="text-sm font-bold text-[#8f3d10] hover:text-[#ff6a00] transition-colors">Join as Chef</a>
+          <a href="#download" className="btn-gradient btn-glow text-white px-5 py-2.5 rounded-full text-sm font-bold inline-flex items-center gap-1.5">
+            Download App <span className="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+
+        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="md:hidden w-10 h-10 rounded-full bg-white border border-[#eadfd7] flex items-center justify-center text-[#8f3d10]" aria-label="Toggle menu">
+          <span className="material-symbols-outlined">{mobileMenuOpen ? 'close' : 'menu'}</span>
+        </button>
+      </div>
+
+      {mobileMenuOpen && (
+        <div className="mobile-menu lg:hidden">
+          {navItems.map((item) => <button key={item.id} onClick={() => handleNavClick(item.id)} className={activeTab === item.id ? 'mobile-active' : ''}>{item.label}</button>)}
+          <a href="#download" onClick={() => setMobileMenuOpen(false)} className="btn-gradient text-white text-center py-3 rounded-full font-bold text-sm mt-2">Download the App</a>
         </div>
       )}
     </nav>
