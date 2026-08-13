@@ -135,7 +135,7 @@ export const MENU_ITEMS: MenuItem[] = [
     calories: 280,
     rating: 4.8,
     reviewsCount: 260,
-    image: 'https://images.unsplash.com/photo-1587899897387-091ebd01a6b2?auto=format&fit=crop&w=800&q=80',
+    image: '/gulab-jamun-reference.png',
     ingredients: ['Khoya', 'Rose Syrup', 'Cardamom', 'Pistachios'],
     prepTime: '5 mins',
     chefName: 'Meenakshi Ammal',

@@ -13,40 +13,45 @@ export const ChefsSection: React.FC<ChefsSectionProps> = ({ chefs }) => {
           <span className="eyebrow">People behind the plate</span>
           <h2 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight">Meet the home chefs.</h2>
           <p className="mt-4 text-sm sm:text-base text-[#6a5043] leading-relaxed">
-            Every profile is a little window into a real kitchen. Explore their speciality, story and the food they love making.
+            No stock chef photography here. Discover each chef through their speciality, story, city and the food they love making.
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
           {chefs.map((chef, index) => (
             <button
               key={chef.id}
               onClick={() => setSelectedChef(chef)}
-              className="chef-card reveal-on-scroll text-left"
+              className="chef-card-no-image reveal-on-scroll text-left p-6 flex flex-col"
               style={{ animationDelay: `${index * 90}ms` }}
             >
-              <div className="relative h-72 overflow-hidden">
-                <img src={chef.avatar} alt={chef.name} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" referrerPolicy="no-referrer" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#160d07] via-[#160d07]/10 to-transparent" />
-                <div className="absolute top-4 left-4 glass-dark px-3 py-1.5 rounded-full text-[10px] text-white font-bold flex items-center gap-1">
-                  <span className="material-symbols-outlined filled text-sm text-[#ffb47f]">verified</span> Verified chef
-                </div>
-                <div className="absolute bottom-5 left-5 right-5 text-white">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-lg font-extrabold">{chef.name}</h3>
-                    <span className="text-xs font-bold bg-white/15 backdrop-blur-md px-2 py-1 rounded-lg">★ {chef.rating}</span>
-                  </div>
-                  <p className="text-[11px] text-white/70 mt-1">{chef.speciality}</p>
-                  <p className="text-[10px] text-[#ffb47f] mt-2 flex items-center gap-1">
-                    <span className="material-symbols-outlined text-xs">location_on</span>{chef.city}
-                  </p>
-                </div>
+              <div className="relative z-10 flex items-start justify-between gap-3">
+                <div className="chef-initial">{chef.name.split(' ').map(n => n[0]).slice(0,2).join('')}</div>
+                <span className="chef-glass-detail px-3 py-1.5 text-[10px] text-white/85 font-bold flex items-center gap-1">
+                  <span className="material-symbols-outlined filled text-sm text-[#ffb47f]">verified</span> Verified
+                </span>
               </div>
-              <div className="p-5 bg-white/60 backdrop-blur-xl border-t border-white/60">
-                <div className="flex flex-wrap gap-1.5">
-                  {chef.dishes.slice(0, 2).map((dish) => <span key={dish} className="text-[10px] px-2 py-1 rounded-full bg-white text-[#805b48] border border-[#eadfd7]">{dish}</span>)}
+
+              <div className="relative z-10 mt-auto">
+                <div className="flex items-end justify-between gap-3">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[.18em] text-[#ffb47f] font-black">Home chef</p>
+                    <h3 className="text-xl font-black mt-1">{chef.name}</h3>
+                    <p className="text-[11px] text-white/55 mt-1">{chef.speciality}</p>
+                  </div>
+                  <span className="chef-glass-detail px-2.5 py-1.5 text-xs font-bold">★ {chef.rating}</span>
                 </div>
-                <span className="mt-4 text-xs font-bold text-[#ff6a00] inline-flex items-center gap-1">
+
+                <div className="mt-5 chef-glass-detail p-3">
+                  <div className="flex items-center gap-1.5 text-[10px] text-[#ffb47f] font-bold">
+                    <span className="material-symbols-outlined text-sm">location_on</span>{chef.city}
+                  </div>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {chef.dishes.slice(0, 2).map((dish) => <span key={dish} className="text-[9px] px-2 py-1 rounded-full bg-white/8 border border-white/10 text-white/65">{dish}</span>)}
+                  </div>
+                </div>
+
+                <span className="mt-5 text-xs font-bold text-[#ff9b5b] inline-flex items-center gap-1">
                   View chef story <span className="material-symbols-outlined text-sm">arrow_forward</span>
                 </span>
               </div>
@@ -70,18 +75,21 @@ export const ChefsSection: React.FC<ChefsSectionProps> = ({ chefs }) => {
       {selectedChef && (
         <div className="fixed inset-0 z-[80] bg-[#120a06]/70 backdrop-blur-md flex items-center justify-center p-4" onClick={() => setSelectedChef(null)}>
           <div className="chef-modal" onClick={(e) => e.stopPropagation()}>
-            <div className="relative h-52 overflow-hidden">
-              <img src={selectedChef.coverImage || selectedChef.avatar} alt="" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#160d07] to-transparent" />
+            <div className="relative overflow-hidden p-7 bg-[#1b1008] text-white">
+              <div className="absolute -right-20 -top-24 w-72 h-72 rounded-full bg-[#ff6a00]/20 blur-3xl" />
               <button onClick={() => setSelectedChef(null)} className="absolute top-4 right-4 w-9 h-9 rounded-full glass-dark text-white flex items-center justify-center">
                 <span className="material-symbols-outlined text-lg">close</span>
               </button>
-              <div className="absolute bottom-4 left-5 text-white">
-                <p className="text-[10px] uppercase tracking-widest text-[#ffb47f] font-bold">Home chef</p>
-                <h3 className="text-2xl font-extrabold">{selectedChef.name}</h3>
+              <div className="relative z-10 flex items-center gap-4">
+                <div className="chef-initial">{selectedChef.name.split(' ').map(n => n[0]).slice(0,2).join('')}</div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-widest text-[#ffb47f] font-bold">Home chef</p>
+                  <h3 className="text-2xl font-extrabold mt-1">{selectedChef.name}</h3>
+                  <p className="text-xs text-white/55 mt-1">{selectedChef.speciality}</p>
+                </div>
               </div>
             </div>
-            <div className="p-6 bg-white/90 backdrop-blur-xl">
+            <div className="p-6 bg-white/95 backdrop-blur-xl">
               <div className="flex flex-wrap gap-2">
                 <span className="glass-chip">★ {selectedChef.rating} rating</span>
                 <span className="glass-chip"><span className="material-symbols-outlined text-sm">location_on</span>{selectedChef.city}</span>
