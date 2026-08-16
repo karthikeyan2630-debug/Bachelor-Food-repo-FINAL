@@ -17,41 +17,48 @@ export const ChefsSection: React.FC<ChefsSectionProps> = ({ chefs }) => {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" style={{ alignItems: 'stretch' }}>
           {chefs.map((chef, index) => (
             <button
               key={chef.id}
               onClick={() => setSelectedChef(chef)}
               className="chef-card-no-image reveal-on-scroll text-left p-6 flex flex-col"
-              style={{ animationDelay: `${index * 90}ms` }}
+              style={{ transitionDelay: `${index * 90}ms`, minHeight: 340 }}
             >
-              <div className="relative z-10 flex items-start justify-between gap-3">
-                <div className="chef-initial">{chef.name.split(' ').map(n => n[0]).slice(0,2).join('')}</div>
+              {/* Top row — avatar + badge (always same height) */}
+              <div className="relative z-10 flex items-start justify-between gap-3 shrink-0">
+                <div className="chef-initial shrink-0">{chef.name.split(' ').map(n => n[0]).slice(0,2).join('')}</div>
                 <span className="chef-glass-detail px-3 py-1.5 text-[10px] text-white/85 font-bold flex items-center gap-1">
                   <span className="material-symbols-outlined filled text-sm text-[#ffb47f]">verified</span> Verified
                 </span>
               </div>
 
-              <div className="relative z-10 mt-auto">
+              {/* Spacer pushes bottom content down uniformly */}
+              <div className="flex-1" />
+
+              {/* Bottom block — always at card bottom */}
+              <div className="relative z-10">
                 <div className="flex items-end justify-between gap-3">
-                  <div>
+                  <div className="min-w-0">
                     <p className="text-[10px] uppercase tracking-[.18em] text-[#ffb47f] font-black">Home chef</p>
-                    <h3 className="text-xl font-black mt-1">{chef.name}</h3>
-                    <p className="text-[11px] text-white/55 mt-1">{chef.speciality}</p>
+                    <h3 className="text-xl font-black mt-1 leading-tight">{chef.name}</h3>
+                    <p className="text-[11px] text-white/55 mt-1 leading-snug">{chef.speciality}</p>
                   </div>
-                  <span className="chef-glass-detail px-2.5 py-1.5 text-xs font-bold">★ {chef.rating}</span>
+                  <span className="chef-glass-detail px-2.5 py-1.5 text-xs font-bold shrink-0">★ {chef.rating}</span>
                 </div>
 
-                <div className="mt-5 chef-glass-detail p-3">
+                <div className="mt-4 chef-glass-detail p-3">
                   <div className="flex items-center gap-1.5 text-[10px] text-[#ffb47f] font-bold">
                     <span className="material-symbols-outlined text-sm">location_on</span>{chef.city}
                   </div>
                   <div className="mt-2 flex flex-wrap gap-1.5">
-                    {chef.dishes.slice(0, 2).map((dish) => <span key={dish} className="text-[9px] px-2 py-1 rounded-full bg-white/8 border border-white/10 text-white/65">{dish}</span>)}
+                    {chef.dishes.slice(0, 2).map((dish) => (
+                      <span key={dish} className="text-[9px] px-2 py-1 rounded-full bg-white/8 border border-white/10 text-white/65 leading-tight">{dish}</span>
+                    ))}
                   </div>
                 </div>
 
-                <span className="mt-5 text-xs font-bold text-[#ff9b5b] inline-flex items-center gap-1">
+                <span className="mt-4 text-xs font-bold text-[#ff9b5b] inline-flex items-center gap-1">
                   View chef story <span className="material-symbols-outlined text-sm">arrow_forward</span>
                 </span>
               </div>

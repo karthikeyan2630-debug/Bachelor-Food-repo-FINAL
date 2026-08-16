@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { BachelorFoodLogo } from './Logo';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -24,8 +25,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
       <div className="loader-orbit loader-orbit-two" />
       <div className="absolute w-[32rem] h-[32rem] rounded-full bg-[#ff6a00]/10 blur-3xl" />
       <div className="relative text-center px-6">
-        <div className={`loader-mark mx-auto ${phase >= 1 ? 'loader-mark-active' : ''}`}>
-          <span className="material-symbols-outlined filled text-4xl">soup_kitchen</span>
+        <div className={`loader-mark mx-auto p-2 ${phase >= 1 ? 'loader-mark-active' : ''}`}>
+          <img src="/bachelor-food-icon.png" alt="Bachelor Food" className="w-full h-full object-contain rounded-2xl" />
         </div>
         <div className="mt-7 overflow-hidden">
           <p className={`text-[11px] uppercase tracking-[0.32em] text-[#ff9b5b] transition-all duration-700 ${phase >= 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>

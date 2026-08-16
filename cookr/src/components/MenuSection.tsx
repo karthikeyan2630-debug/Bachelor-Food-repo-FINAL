@@ -1,6 +1,69 @@
 import React, { useState, useMemo } from 'react';
 import { MenuItem, VegType } from '../types';
 
+// ── Inline Gulab Jamun illustration — no external URL needed ─────────────────
+const GulabJamunSVG: React.FC<{ className?: string }> = ({ className }) => (
+  <svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" className={className} style={{ display: 'block' }}>
+    <defs>
+      <radialGradient id="gjBg" cx="50%" cy="40%" r="70%">
+        <stop offset="0%" stopColor="#7C2D12"/>
+        <stop offset="100%" stopColor="#431407"/>
+      </radialGradient>
+      <radialGradient id="gjJ1" cx="38%" cy="33%" r="55%">
+        <stop offset="0%" stopColor="#C2410C"/>
+        <stop offset="100%" stopColor="#7C2D12"/>
+      </radialGradient>
+      <radialGradient id="gjJ2" cx="38%" cy="33%" r="55%">
+        <stop offset="0%" stopColor="#B45309"/>
+        <stop offset="100%" stopColor="#78350F"/>
+      </radialGradient>
+      <filter id="gjSh">
+        <feDropShadow dx="0" dy="5" stdDeviation="9" floodColor="#431407" floodOpacity="0.55"/>
+      </filter>
+    </defs>
+    <rect width="480" height="300" fill="url(#gjBg)"/>
+    {/* Decorative dots */}
+    {[30,100,170,240,310,380,450].map(x => (
+      <circle key={x} cx={x} cy="22" r="2.5" fill="#C2410C" opacity=".28"/>
+    ))}
+    {/* Plate */}
+    <ellipse cx="240" cy="207" rx="172" ry="25" fill="#92400E" opacity=".32"/>
+    <ellipse cx="240" cy="197" rx="166" ry="21" fill="#FEF3C7"/>
+    <ellipse cx="240" cy="197" rx="150" ry="16" fill="#FFFBEB"/>
+    <ellipse cx="240" cy="202" rx="108" ry="10" fill="#D97706" opacity=".42"/>
+    {/* Back ball */}
+    <circle cx="289" cy="174" r="39" fill="url(#gjJ2)" filter="url(#gjSh)"/>
+    <circle cx="275" cy="161" r="13" fill="#C2410C" opacity=".32"/>
+    <circle cx="273" cy="159" r="5" fill="#FED7AA" opacity=".2"/>
+    {/* Left ball */}
+    <circle cx="193" cy="171" r="41" fill="url(#gjJ1)" filter="url(#gjSh)"/>
+    <circle cx="179" cy="157" r="14" fill="#EA580C" opacity=".3"/>
+    <circle cx="177" cy="155" r="6" fill="#FED7AA" opacity=".25"/>
+    {/* Front centre ball */}
+    <circle cx="242" cy="158" r="46" fill="url(#gjJ1)" filter="url(#gjSh)"/>
+    <circle cx="226" cy="141" r="16" fill="#EA580C" opacity=".36"/>
+    <circle cx="224" cy="139" r="7" fill="#FED7AA" opacity=".3"/>
+    {/* Syrup drizzle */}
+    <path d="M242 110 Q257 125 250 146 Q264 139 275 154" stroke="#D97706" strokeWidth="3.5" fill="none" opacity=".6" strokeLinecap="round"/>
+    <path d="M219 116 Q208 132 214 150" stroke="#B45309" strokeWidth="2.5" fill="none" opacity=".5" strokeLinecap="round"/>
+    {/* Pistachios */}
+    <ellipse cx="230" cy="110" rx="9" ry="5.5" fill="#65A30D" transform="rotate(-20 230 110)"/>
+    <ellipse cx="258" cy="107" rx="8" ry="5" fill="#4D7C0F" transform="rotate(15 258 107)"/>
+    <ellipse cx="272" cy="116" rx="7" ry="4.5" fill="#65A30D" transform="rotate(-10 272 116)"/>
+    <ellipse cx="214" cy="113" rx="7" ry="4.5" fill="#4D7C0F" transform="rotate(25 214 113)"/>
+    {/* Steam */}
+    <path d="M231 90 Q225 75 232 62 Q228 50 235 40" stroke="#FEF3C7" strokeWidth="2.5" fill="none" opacity=".18" strokeLinecap="round"/>
+    <path d="M253 86 Q259 71 253 58 Q258 46 252 34" stroke="#FEF3C7" strokeWidth="2" fill="none" opacity=".14" strokeLinecap="round"/>
+    {/* Rose petals */}
+    <ellipse cx="184" cy="187" rx="7.5" ry="4.5" fill="#FB7185" opacity=".58" transform="rotate(-30 184 187)"/>
+    <ellipse cx="302" cy="184" rx="6.5" ry="4" fill="#FB7185" opacity=".48" transform="rotate(20 302 184)"/>
+    <ellipse cx="242" cy="195" rx="5.5" ry="3.5" fill="#FDA4AF" opacity=".52"/>
+    {/* Label ribbon */}
+    <rect x="138" y="244" width="204" height="28" rx="14" fill="#7C2D12" opacity=".85"/>
+    <text x="240" y="263" textAnchor="middle" fill="#FED7AA" fontSize="11.5" fontFamily="Georgia,serif" fontStyle="italic">✦ Served warm · 2 pieces ✦</text>
+  </svg>
+);
+
 interface MenuSectionProps {
   menuItems: MenuItem[];
 }
@@ -136,6 +199,9 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
             >
               {/* Image */}
               <div className="relative h-48 w-full overflow-hidden bg-[#fff0e6]">
+                {item.id === 'm9' ? (
+                  <GulabJamunSVG className="w-full h-full transition-transform duration-500 group-hover:scale-105" />
+                ) : (
                 <img
                   src={item.image}
                   alt={item.name}
@@ -145,8 +211,9 @@ export const MenuSection: React.FC<MenuSectionProps> = ({ menuItems }) => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
+                )}
                 {/* Discovery chip */}
-                <div className="absolute top-3 right-3 glass-panel px-3 py-1 rounded-full text-[10px] font-bold text-[#a14000] shadow-sm border border-white/60">
+                <div className="discovery-chip absolute top-3 right-3 px-3.5 py-1.5 rounded-full text-[10px] font-extrabold tracking-wide shadow-lg">
                   Explore in app
                 </div>
                 {/* Veg indicator */}

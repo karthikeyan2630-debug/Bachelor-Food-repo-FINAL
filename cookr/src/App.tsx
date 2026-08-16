@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { TabType } from './types';
 import { MENU_ITEMS, CHEFS } from './data/mockData';
 import { Navbar } from './components/Navbar';
@@ -21,6 +21,25 @@ export default function App() {
 
   const finishLoading = useCallback(() => setLoading(false), []);
 
+  useEffect(() => {
+    const elements = Array.from(document.querySelectorAll<HTMLElement>('.reveal-on-scroll'));
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => el.classList.add('is-visible'));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        // Keep observing instead of unobserving so the animation can replay
+        // every time the element leaves and re-enters the viewport.
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
+      });
+    }, { threshold: 0.18, rootMargin: '0px 0px -10% 0px' });
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [activeTab, loading, termsAccepted]);
+
   const handleNavigate = (tab: TabType) => {
     setActiveTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -40,7 +59,7 @@ export default function App() {
     <div className="min-h-screen bg-[#fff8f3] text-[#1b1c1c] selection:bg-[#ff6a00] selection:text-white">
       <Navbar activeTab={activeTab} setActiveTab={setActiveTab} />
 
-      <main>
+      <main key={activeTab} className="page-transition">
         {activeTab === 'home' && (
           <>
             <HeroSection onNavigate={handleNavigate} />
@@ -61,19 +80,6 @@ export default function App() {
 
       <Footer onNavigate={handleNavigate} />
 
-      <nav className="md:hidden fixed bottom-4 left-4 right-4 mobile-bottom-nav z-40">
-        {([
-          { id: 'home', icon: 'home', label: 'Home' },
-          { id: 'menu', icon: 'explore', label: 'Explore' },
-          { id: 'chefs', icon: 'groups', label: 'Chefs' },
-          { id: 'reviews', icon: 'reviews', label: 'Reviews' },
-        ] as { id: TabType; icon: string; label: string }[]).map((item) => (
-          <button key={item.id} onClick={() => handleNavigate(item.id)} className={activeTab === item.id ? 'mobile-bottom-active' : ''}>
-            <span className={`material-symbols-outlined text-xl ${activeTab === item.id ? 'filled' : ''}`}>{item.icon}</span>
-            <span>{item.label}</span>
-          </button>
-        ))}
-      </nav>
     </div>
   );
 }

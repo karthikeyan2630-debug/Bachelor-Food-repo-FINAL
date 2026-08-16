@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { BachelorFoodLogo } from './Logo';
 
 export const TERMS_VERSION = '1.0';
 const STORAGE_KEY = 'bf_terms_accepted_version';
@@ -57,17 +58,7 @@ export const TermsGate: React.FC<TermsGateProps> = ({ onAccepted }) => {
 
       <div className="flex-1 flex flex-col items-center justify-start py-8 px-4 relative z-10">
         <div className="w-full max-w-2xl space-y-5">
-
-          {/* Logo */}
-          <div className="flex items-center justify-center gap-2.5">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#FF6A00] to-[#FF8C33] flex items-center justify-center shadow-md">
-              <span className="material-symbols-outlined filled text-white text-xl">soup_kitchen</span>
-            </div>
-            <div className="leading-none">
-              <span className="text-xl font-extrabold tracking-tight text-[#1b1c1c] block">Bachelor Food</span>
-              <span className="text-[10px] font-semibold text-[#a14000] tracking-widest uppercase">Home Cooked · Delivered</span>
-            </div>
-          </div>
+          <BachelorFoodLogo />
 
           {/* Card */}
           <div className="bg-white rounded-3xl border border-[#f0eded] soft-shadow overflow-hidden">

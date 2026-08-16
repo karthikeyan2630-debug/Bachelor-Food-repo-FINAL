@@ -28,7 +28,7 @@ export const HowItWorksSection: React.FC<HowItWorksProps> = ({ onNavigate }) => 
         <div className="journey-traveller" />
         <div className="grid md:grid-cols-4 gap-5 relative z-10">
           {STEPS.map((step, index) => (
-            <div key={step.number} className="journey-step reveal-on-scroll" style={{ animationDelay: `${index * 120}ms` }}>
+            <div key={step.number} className="journey-step reveal-on-scroll" style={{ transitionDelay: `${index * 120}ms` }}>
               <div className="journey-node">
                 <span className="material-symbols-outlined">{step.icon}</span>
               </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { BachelorFoodLogo } from './Logo';
 
 interface TermsPageProps {
   onBack?: () => void;
@@ -20,12 +21,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onBack, showBackButton = f
               Back
             </button>
           )}
-          <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-[#FF6A00] to-[#FF8C33] flex items-center justify-center">
-              <span className="material-symbols-outlined filled text-white text-base">soup_kitchen</span>
-            </div>
-            <span className="text-base font-extrabold text-[#1b1c1c]">Bachelor Food</span>
-          </div>
+          <BachelorFoodLogo compact />
           <span className="text-[#8e7164] text-sm ml-1">— Terms &amp; Conditions</span>
         </div>
       </div>

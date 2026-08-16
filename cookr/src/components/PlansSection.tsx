@@ -19,7 +19,7 @@ export const PlansSection: React.FC = () => (
 
       <div className="mt-12 grid md:grid-cols-3 gap-5">
         {PLANS.map((plan, i) => (
-          <div key={plan.name} className={`pricing-card reveal-on-scroll ${plan.featured ? 'pricing-card-featured' : ''}`} style={{ animationDelay: `${i * 100}ms` }}>
+          <div key={plan.name} className={`pricing-card reveal-on-scroll ${plan.featured ? 'pricing-card-featured' : ''}`} style={{ transitionDelay: `${i * 100}ms` }}>
             {plan.featured && <span className="pricing-badge">Most popular</span>}
             <div className="w-11 h-11 rounded-2xl bg-[#fff0e6] text-[#ff6a00] flex items-center justify-center">
               <span className="material-symbols-outlined">{plan.name === 'Explore' ? 'explore' : plan.name === 'Weekly' ? 'calendar_month' : 'auto_awesome'}</span>

@@ -33,13 +33,13 @@ export const FeatureSection: React.FC<FeatureSectionProps> = ({ onNavigate }) =>
 
         <div className="grid sm:grid-cols-2 gap-4">
           {FEATURES.map((feature, i) => (
-            <div key={feature.title} className="feature-card reveal-on-scroll" style={{ animationDelay: `${i * 90}ms` }}>
+            <div key={feature.title} className="feature-card reveal-on-scroll" style={{ transitionDelay: `${i * 90}ms` }}>
               <div className="w-11 h-11 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-[#ff9b5b]">
                 <span className="material-symbols-outlined text-xl">{feature.icon}</span>
               </div>
               <h3 className="mt-5 text-base font-bold">{feature.title}</h3>
               <p className="mt-2 text-xs text-white/55 leading-relaxed">{feature.desc}</p>
-              <span className="absolute right-5 bottom-5 text-white/10 text-5xl font-black">0{i + 1}</span>
+              <span className="feature-number absolute top-5 right-5 text-white/10 text-5xl font-black">0{i + 1}</span>
             </div>
           ))}
         </div>
